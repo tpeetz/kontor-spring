@@ -8,19 +8,24 @@ group = 'com.tpeetz.kontor'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+ext.orientdbVersion = "3.1.0"
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+    implementation group: 'com.orientechnologies', name: 'orientdb-core', version: orientdbVersion
+    implementation group: 'com.orientechnologies', name: 'orientdb-server', version: orientdbVersion
+    implementation group: 'com.orientechnologies', name: 'orientdb-tools', version: orientdbVersion
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 springBoot {
@@ -33,4 +38,8 @@ bootJar {
 
 test {
 	useJUnitPlatform()
+}
+
+wrapper {
+    gradleVersion = '6.5.1'
 }
